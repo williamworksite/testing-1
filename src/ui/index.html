@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Packing Lab</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>📦 Box Packing Lab MVP</h1>
+            <nav>
+                <button class="nav-btn active" onclick="showTab('tab-boxes')">Boxes</button>
+                <button class="nav-btn" onclick="showTab('tab-scenarios')">Scenarios & Pack</button>
+                <button class="nav-btn" onclick="showTab('tab-compare')">Compare</button>
+                <button class="nav-btn" onclick="showTab('tab-shipstation')">ShipStation</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- BOXES TAB -->
+            <section id="tab-boxes" class="tab-content active">
+                <div class="panel">
+                    <h2>Manage Boxes</h2>
+                    <div id="box-list" class="grid-table">
+                        <!-- Boxes rendered here -->
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="new-box-code" placeholder="Code (e.g. S)" style="width: 80px;">
+                        <input type="text" id="new-box-name" placeholder="Name">
+                        <input type="number" id="new-box-l" placeholder="L" style="width: 60px;">
+                        <input type="number" id="new-box-w" placeholder="W" style="width: 60px;">
+                        <input type="number" id="new-box-h" placeholder="H" style="width: 60px;">
+                        <input type="number" id="new-box-max" placeholder="Max Wt" style="width: 80px;">
+                        <button onclick="addBox()">Add Box</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCENARIOS & PACK TAB -->
+            <section id="tab-scenarios" class="tab-content">
+                <div class="split-view">
+                    <div class="panel left">
+                        <h2>1. Configure Items</h2>
+                        <div id="items-list">
+                            <!-- Items list -->
+                        </div>
+                        <div class="form-row-multi">
+                            <input type="text" id="item-sku" placeholder="SKU">
+                            <input type="text" id="item-name" placeholder="Name">
+                            <input type="number" id="item-qty" placeholder="Qty" value="1" style="width: 50px;">
+                        </div>
+                        <div class="form-row-multi">
+                            <input type="number" id="item-l" placeholder="L" style="width: 60px;">
+                            <input type="number" id="item-w" placeholder="W" style="width: 60px;">
+                            <input type="number" id="item-h" placeholder="H" style="width: 60px;">
+                            <input type="number" id="item-wt" placeholder="Lb" style="width: 60px;">
+                            <button onclick="addItem()">Add Item</button>
+                        </div>
+                        <div class="presets">
+                            <button onclick="addPreset('shirt')">+ Shirt</button>
+                            <button onclick="addPreset('shoes')">+ Shoes</button>
+                            <button onclick="addPreset('poster')">+ Poster</button>
+                            <button onclick="addPreset('mug')">+ Mug</button>
+                            <button onclick="clearItems()">Clear All</button>
+                        </div>
+                    </div>
+
+                    <div class="panel right">
+                        <h2>2. Run Packer</h2>
+                        <div class="controls">
+                            <label>Mode:
+                                <select id="pack-mode">
+                                    <option value="bestfit">Best Fit (Recommended)</option>
+                                    <option value="ffd">First Fit Decreasing</option>
+                                    <option value="beam">Beam Search (Exp)</option>
+                                </select>
+                            </label>
+                            <label>Carrier:
+                                <select id="carrier-profile">
+                                    <option value="default">Default (/139)</option>
+                                    <option value="usps">USPS (/166)</option>
+                                </select>
+                            </label>
+                            <button class="primary-btn" onclick="runPack()">PACK NOW</button>
+                        </div>
+
+                        <div id="pack-results">
+                            <!-- Results JSON/Vis -->
+                            <div class="placeholder">Results will appear here...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPARE TAB -->
+            <section id="tab-compare" class="tab-content">
+                <h2>Algorithm Comparison</h2>
+                <button onclick="runComparison()">Run Benchmark</button>
+                <div id="compare-results"></div>
+            </section>
+
+            <!-- SHIPSTATION TAB -->
+            <section id="tab-shipstation" class="tab-content">
+                <h2>ShipStation Integration</h2>
+                <div class="panel">
+                    <button onclick="checkStores()">Check Connection (List Carriers)</button>
+                    <pre id="store-list" style="background:#eee; padding:5px; font-size:0.8em;"></pre>
+                </div>
+
+                <div class="panel">
+                    <h3>Create Order from Last Pack</h3>
+                    <p>Requires a successful packing run first.</p>
+                    <button id="btn-create-order" onclick="createShipStationOrder()" disabled>Push Order to
+                        ShipStation</button>
+                    <button onclick="getRates()">Get Rate (Box 1 Only)</button>
+                    <button onclick="getBatchRates()" style="background:#007bff; color:white;">Get Batch Estimate (All
+                        Boxes)</button>
+                    <pre id="ss-output" style="background:#eee; padding:10px; margin-top:10px;"></pre>
+                </div>
+    </div>
+
+    <script src="app.js?v=DEBUG_3"></script>
+</body>
+
+</html>

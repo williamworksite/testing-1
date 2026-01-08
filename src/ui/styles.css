@@ -1,0 +1,117 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f8;
+    color: #333;
+}
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+h1 { margin: 0; font-size: 1.2rem; color: #2c3e50; }
+
+nav button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+nav button.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.panel {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.split-view {
+    display: flex;
+    gap: 20px;
+}
+.split-view .left { flex: 1; }
+.split-view .right { flex: 1; }
+
+input, select, button {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+button {
+    background: #eef;
+    color: #337;
+    cursor: pointer;
+}
+button:hover { background: #dde; }
+button.primary-btn {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+}
+.form-row, .form-row-multi {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.grid-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+.box-card {
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+.presets { margin-top: 10px; font-size: 0.9em; }
+
+.package-result {
+    border: 1px solid #cce5ff;
+    background: #f0f7ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.metrics-summary {
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-family: monospace;
+}
+pre { background: #eee; padding: 10px; overflow-x: auto; }
